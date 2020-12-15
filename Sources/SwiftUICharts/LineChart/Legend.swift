@@ -40,9 +40,9 @@ struct Legend: View {
     
     var body: some View {
         ZStack(alignment: .topLeading){
-            ForEach((0...4), id: \.self) { height in
+            ForEach((0...3), id: \.self) { height in
                 HStack(alignment: .center){
-                    Text("\(self.getYLegendSafe(height: height), specifier: "%.2f")").offset(x: 0, y: self.getYposition(height: height) )
+                    Text("\(self.getYLegendSafe(height: height), specifier: "%.0f")").offset(x: 0, y: self.getYposition(height: height) )
                         .foregroundColor(Colors.LegendText)
                         .font(.caption)
                     self.line(atHeight: self.getYLegendSafe(height: height), width: self.frame.width)
@@ -85,8 +85,8 @@ struct Legend: View {
         let points = self.data.onlyPoints()
         guard let max = points.max() else { return nil }
         guard let min = points.min() else { return nil }
-        let step = Double(max - min)/4
-        return [min+step * 0, min+step * 1, min+step * 2, min+step * 3, min+step * 4]
+        let step = Double(max - min)/3
+        return [min+step * 0, min+step * 1, min+step * 2, min+step * 3]
     }
 }
 
